@@ -7,7 +7,18 @@
 
       <?php wp_head();?>
 
-   
+      <header>
+            <div class='container'>
+                  <?php
+                  wp_nav_menu(
+                        array(
+                              'theme_location' => 'top-menu',
+                              'menu_class' => 'header-menu',
+                        )
+                  );
+                  ?>
+            </div>
+      </header>
 
 </head>
 <body>

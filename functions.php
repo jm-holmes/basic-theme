@@ -14,76 +14,35 @@ function add_css () {
 
 add_action( 'wp_enqueue_scripts', 'add_css' );
 
-// Enqueue scripts
+//js files
+
 function add_js () {
 
-	//Register scripts
+		if(is_front_page()) {
+			wp_enqueue_script('js-main', get_template_directory_uri(  ) . '/assets/js/main.js', array(), '', false);
+		};
+		if(is_author()) {
+			wp_enqueue_script('js-author', get_template_directory_uri(  ) . '/assets/js/author.js', array(), '', false);
+		};
+		if(is_404()) {
+			wp_enqueue_script('js-404', get_template_directory_uri(  ) . '/assets/js/404.js', array(), '', false);
+		};
+		if(is_category()) {
+			wp_enqueue_script('js-category', get_template_directory_uri(  ) . '/assets/js/category.js', array(), '', false);
+		};
+		if(is_date()) {
+			wp_enqueue_script('js-date', get_template_directory_uri(  ) . '/assets/js/date.js', array(), '', false);
+		};
+		if(is_page()) {
+			wp_enqueue_script('js-page', get_template_directory_uri(  ) . '/assets/js/page.js', array(), '', false);
+		};
+		if(is_single()) {
+			wp_enqueue_script('js-single', get_template_directory_uri(  ) . '/assets/js/single.js', array(), '', false);
+		};
+		if(is_tag()) {
+			wp_enqueue_script('js-tage', get_template_directory_uri(  ) . '/assets/js/tag.js', array(), '', false);
+		};
 
-		wp_register_script( 'bt-main.js', get_template_directory_uri(  ) . '/assets/js/main.js', array(), '0.1', true);
-		wp_register_script( 'bt-404.js', get_template_directory_uri(  ) . '/assets/js/404.js', array(), '0.1', true);
-		wp_register_script( 'bt-attachment.js', get_template_directory_uri(  ) . '/assets/js/attachment.js', array(), '0.1', true);
-		wp_register_script( 'bt-author.js', get_template_directory_uri(  ) . '/assets/js/author.js', array(), '0.1', true);
-		wp_register_script( 'bt-category.js', get_template_directory_uri(  ) . '/assets/js/category.js', array(), '0.1', true);
-		wp_register_script( 'bt-comments.js', get_template_directory_uri(  ) . '/assets/js/comments.js', array(), '0.1', true);
-		wp_register_script( 'bt-date.js', get_template_directory_uri(  ) . '/assets/js/date.js', array(), '0.1', true);
-		wp_register_script( 'bt-footer.js', get_template_directory_uri(  ) . '/assets/js/footer.js', array(), '0.1', true);
-		wp_register_script( 'bt-header.js', get_template_directory_uri(  ) . '/assets/js/header.js', array(), '0.1', true);
-		wp_register_script( 'bt-page.js', get_template_directory_uri(  ) . '/assets/js/page.js', array(), '0.1', true);
-		wp_register_script( 'bt-single.js', get_template_directory_uri(  ) . '/assets/js/single.js', array(), '0.1', true);
-		wp_register_script( 'bt-tag.js', get_template_directory_uri(  ) . '/assets/js/tag.js', array(), '0.1', true);
-
-		wp_register_script( 'bootstrap', get_template_directory_uri(  ) . '/assets/js/bootstrap/bootstrap.min.js', 'jquery', '0.1', true);
-		wp_enqueue_script('bootstrap');
-	
-	//Conditionally load on certain page
-
-	if (is_front_page()) {
-		wp_enqueue_script( 'bt-main.js' );
-	};
-
-	if (is_404()) {
-		wp_enqueue_script( 'bt-404.js' );
-	};
-
-	if (is_attachment()) {
-		wp_enqueue_script( 'bt-attachment.js' );
-	};
-
-	if (is_author()) {
-		wp_enqueue_script( 'bt-author.js' );
-	};
-
-	if (is_category()) {
-		wp_enqueue_script( 'bt-category.js' );
-	};
-
-	if (is_comments()) {
-		wp_enqueue_script( 'bt-comments.js' );
-	};
-
-	if (is_date()) {
-		wp_enqueue_script( 'bt-date.js' );
-	};
-
-	if (is_footer()) {
-		wp_enqueue_script( 'bt-footer.js' );
-	};
-
-	if (is_header()) {
-		wp_enqueue_script( 'bt-header.js' );
-	};
-
-	if (is_page()) {
-		wp_enqueue_script( 'bt-page.js' );
-	};
-
-	if (is_single()) {
-		wp_enqueue_script( 'bt-single.js' );
-	};
-
-	if (is_tag()) {
-		wp_enqueue_script( 'bt-tag.js' );
-	};
 }
 add_action( 'wp_enqueue_scripts', 'add_js');
 
@@ -238,9 +197,3 @@ function my_login_logo_url_title() {
 add_filter( 'login_headertext', 'my_login_logo_url_title' );
 */
 
-//Add stylesheet for login page
-function my_login_stylesheet() {
-    wp_enqueue_style( 'custom-login', get_stylesheet_directory_uri() . '/css/style-login.css' );
-    wp_enqueue_script( 'custom-login', get_stylesheet_directory_uri() . '/js/style-login.js' );
-}
-add_action( 'login_enqueue_scripts', 'my_login_stylesheet' );
